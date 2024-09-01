@@ -1,0 +1,45 @@
+name: dockercompose613210867584869557
+services:
+  newsletterapi:
+    build:
+      context: E:\Project\DOCUMENTS\DevOps\NewsletterAPI
+      dockerfile: Dockerfile
+    depends_on:
+      sqlserver:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_URLS: http://+:80
+    image: newsletterapi
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 80
+      published: "5038"
+      protocol: tcp
+  sqlserver:
+    container_name: sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Express
+      SA_PASSWORD: StrongP@ssw0rd123
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 1433
+      published: "1450"
+      protocol: tcp
+    volumes:
+    - type: volume
+      source: sqlserverdata
+      target: /var/opt/mssql
+      volume: {}
+networks:
+  default:
+    name: dockercompose613210867584869557_default
+volumes:
+  sqlserverdata:
+    name: dockercompose613210867584869557_sqlserverdata

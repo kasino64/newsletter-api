@@ -1,0 +1,21 @@
+# Newsletter API
+
+This project is a simple API built with .NET Core, SQL Server, and Docker for educational purposes. The API allows managing a newsletter subscription, including operations like adding, listing, and removing email subscriptions.
+
+## Getting Started
+
+### Running the Application
+
+To build and run the Docker containers, use the following command:
+
+```bash
+docker-compose up --build
+
+### Accessing the API
+
+Once the containers are running, you can access the API's Swagger UI at:
+
+```bash
+http://localhost:5038/swagger/index.html
+
+This URL provides an interface to explore and test the API endpoints.
